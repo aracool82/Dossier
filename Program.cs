@@ -29,13 +29,13 @@ namespace Dossier
                 switch (selectMenu)
                 {
                     case "1":
-
+                        AddDossier(fullNameList,jobPositionList);
                         break;
                     case "2":
                         if(fullNameList.Count > 0)
                             for (int i = 0; i < fullNameList.Count; i++)
                             {
-                                Console.WriteLine(i+1  + ". "+ fullNameList[i]);
+                                Console.WriteLine(i+1  + ". "+ fullNameList[i] + " - " +jobPositionList[i]);
                             }
                         else
                             Console.WriteLine("Нет ни кто");
@@ -51,6 +51,17 @@ namespace Dossier
                 Console.ReadKey();
                 Console.Clear();
             } while (selectMenu!="4");
+        }
+
+        public static void AddDossier(List<string> fullName,List<string> jobPosition)
+        {
+            Console.Clear();
+            Console.WriteLine("Введите ФИО : ");
+            string inputFullName = Console.ReadLine();
+            Console.WriteLine("Введите Должность : ");
+            string inputJobPosition = Console.ReadLine();
+            fullName.Add(inputFullName);
+            jobPosition.Add(inputJobPosition);
         }
     }
 }
