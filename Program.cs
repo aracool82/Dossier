@@ -32,16 +32,10 @@ namespace Dossier
                         AddDossier(fullNameList,jobPositionList);
                         break;
                     case "2":
-                        if(fullNameList.Count > 0)
-                            for (int i = 0; i < fullNameList.Count; i++)
-                            {
-                                Console.WriteLine(i+1  + ". "+ fullNameList[i] + " - " +jobPositionList[i]);
-                            }
-                        else
-                            Console.WriteLine("Нет ни кто");
+                        ShowAll(fullNameList, jobPositionList);
                         break;
                     case "3":
-
+                        DeleteDossier(fullNameList, jobPositionList);
                         break;
                     default:
                         Console.Clear();
@@ -53,15 +47,37 @@ namespace Dossier
             } while (selectMenu!="4");
         }
 
-        public static void AddDossier(List<string> fullName,List<string> jobPosition)
+        public static void DeleteDossier(List<string> fullNameList,List<string> jobPositionList)
+        {
+            Console.Clear();
+            ShowAll(fullNameList, jobPositionList);
+            Console.WriteLine("Какой № досье удалить?");
+            int number =Convert.ToInt32( Console.ReadLine());
+            if (number > 0 && number <= fullNameList.Count)
+            {
+                fullNameList.RemoveAt(number-1);
+                jobPositionList.RemoveAt(number-1);
+            }
+        }
+        
+        private static void ShowAll(List<string> fullNameList, List<string> jobPositionList)
+        {
+            if (fullNameList.Count > 0)
+                for (int i = 0; i < fullNameList.Count; i++)
+                    Console.WriteLine(i + 1 + ". " + fullNameList[i] + " - " + jobPositionList[i]);
+            else
+                Console.WriteLine("Нет ни кто");
+        }
+
+        public static void AddDossier(List<string> fullNameList,List<string> jobPositionList)
         {
             Console.Clear();
             Console.WriteLine("Введите ФИО : ");
             string inputFullName = Console.ReadLine();
             Console.WriteLine("Введите Должность : ");
             string inputJobPosition = Console.ReadLine();
-            fullName.Add(inputFullName);
-            jobPosition.Add(inputJobPosition);
+            fullNameList.Add(inputFullName);
+            jobPositionList.Add(inputJobPosition);
         }
     }
 }
