@@ -1,18 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 
-// В функциях вы выполняли задание "Кадровый учёт"
-    // Используя одну из изученных коллекций, вы смогли бы сильно себе упростить код выполненной 
-    // программы, ведь у нас данные, это ФИО и позиция.
-    // Поиск в данном задании не нужен.
-    //
-    // 1) добавить досье
-    //
-    // 2) вывести все досье (в одну строку через “-” фио и должность)
-    //
-    // 3) удалить досье
-    //
-    // 4) выход
 namespace Dossier
 {
     internal class Program
@@ -49,14 +37,26 @@ namespace Dossier
 
         public static void DeleteDossier(List<string> fullNameList,List<string> jobPositionList)
         {
+            if (fullNameList.Count == 0)
+            {
+                Console.WriteLine("Нет ни одного досье");
+                return;
+            }
+
             Console.Clear();
             ShowAll(fullNameList, jobPositionList);
             Console.WriteLine("Какой № досье удалить?");
             int number =Convert.ToInt32( Console.ReadLine());
+            
             if (number > 0 && number <= fullNameList.Count)
             {
                 fullNameList.RemoveAt(number-1);
                 jobPositionList.RemoveAt(number-1);
+                Console.WriteLine("Досье удалено.");
+            }
+            else
+            {
+                Console.WriteLine("Не верно введен номер.");
             }
         }
         
